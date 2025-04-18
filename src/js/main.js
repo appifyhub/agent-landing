@@ -48,9 +48,9 @@
   win.addEventListener('resize', featuresTitlePos)
 
   function featuresTitlePos () {
-    let featuresSectionLeft = featuresSection.querySelector('.features-inner').getBoundingClientRect().left
-    let firstFeatureLeft = firstFeature.getBoundingClientRect().left
-    let featuresTitleOffset = parseInt(firstFeatureLeft - featuresSectionLeft)
+    const featuresSectionLeft = featuresSection.querySelector('.features-inner').getBoundingClientRect().left
+    const firstFeatureLeft = firstFeature.getBoundingClientRect().left
+    const featuresTitleOffset = parseInt(firstFeatureLeft - featuresSectionLeft)
     if (firstFeatureLeft > featuresSectionLeft) {
       featuresTitle.style.marginLeft = `${featuresTitleOffset}px`
     } else {
@@ -64,10 +64,10 @@
   // Throttling
   function throttle (func, milliseconds) {
     let lastEventTimestamp = null
-    let limit = milliseconds
+    const limit = milliseconds
 
     return (...args) => {
-      let now = Date.now()
+      const now = Date.now()
 
       if (!lastEventTimestamp || now - lastEventTimestamp >= limit) {
         lastEventTimestamp = now
@@ -82,8 +82,8 @@
   let scrollY = 0
   let coordinateX = 0
   let coordinateY = 0
-  let winW = doc.clientWidth
-  let winH = doc.clientHeight
+  const winW = doc.clientWidth
+  const winH = doc.clientHeight
 
   // Move Objects
   function moveObjects (e, object) {
