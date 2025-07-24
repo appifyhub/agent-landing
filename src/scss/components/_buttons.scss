@@ -13,7 +13,7 @@
     background-color: color(bg, 3);
     color: color(typography, 1) !important;
     border: none;
-    border-radius: 12px;
+    border-radius: 64px;
     cursor: pointer;
     justify-content: center;
     padding: 20px 32px;
@@ -30,7 +30,7 @@
     }
 
     &::before {
-        border-radius: 2px;
+        border-radius: 64px;
     }
 }
 
@@ -47,6 +47,7 @@
         box-shadow: 0 8px 24px rgba(color(bg, 1), .25);
 		mix-blend-mode: multiply;
         transition: box-shadow .15s ease;
+        border-radius: 64px;
     }
 
     &:hover {
@@ -78,9 +79,10 @@
 
 .button-primary {
 	background-color: color(primary, 1);
+    color: #9A2C5A !important;
 
     &:hover {
-        background: lighten(color(primary, 1), 1%);
+        background-color: color(primary, 2);
     }
 
     &.button-shadow {
@@ -88,6 +90,7 @@
         &::before {
             box-shadow: 0 8px 16px rgba(color(primary, 1), .25);
 			mix-blend-mode: normal;
+            border-radius: 64px;
         }
 
         &:hover {

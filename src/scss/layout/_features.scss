@@ -37,6 +37,19 @@
 	@include font-weight(medium);
 }
 
+.features-cta {
+	.button {
+		@include media( '<=medium' ) {
+			display: block;
+			width: 100%;
+			max-width: 400px;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+	}
+}
+
 @include media( '>medium' ) {
 
 	.features {

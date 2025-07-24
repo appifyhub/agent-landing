@@ -62,12 +62,60 @@
 	margin-bottom: 40px;
 }
 
-@include media( '<medium' ) {
+@include media( '<=medium' ) {
+
+	.hero {
+		padding-top: 64px;
+		padding-bottom: 40px;
+	}
+
+	.hero-inner {
+		padding-left: 32px;
+		padding-right: 32px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.hero-copy {
+		order: 1;
+		margin-bottom: 40px;
+		display: flex;
+		flex-direction: column;
+		
+		.hero-title {
+			order: 1;
+		}
+		
+		.hero-paragraph {
+			order: 2;
+		}
+		
+		p:not(.hero-paragraph) {
+			order: 3;
+		}
+		
+		.hero-cta {
+			order: 5; // This will come after hero-app
+		}
+	}
+
+	.hero-app {
+		order: 4; // This will come before hero-cta
+		margin-bottom: 32px;
+	}
 
 	.hero-cta {
+		max-width: none;
+		margin-left: 0;
+		margin-right: 0;
 
 		.button {
-			display: flex;
+			display: block;
+			width: 100%;
+			max-width: 400px;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
 
 			+ .button {
 				margin-top: 16px;
@@ -100,17 +148,41 @@
     }
 
 	.hero-inner {
-		/* Split hero in two half */
+		/* Use flexbox instead of grid for better cross-browser consistency */
 		display: flex;
 		justify-content: space-between;
+		align-items: flex-start;
+		gap: 48px;
 	}
 
     .hero-copy {
         padding-top: 88px;
-        padding-right: 48px;
         min-width: 448px;
         max-width: 588px;
+        flex: 1;
     }
+
+	.hero-app {
+		flex-shrink: 0;
+	}
+
+	.hero-cta {
+		margin-top: 16px;
+		margin-left: 0;
+		margin-right: auto;
+		text-align: left;
+		max-width: none;
+
+		.button {
+			display: inline-flex;
+			min-width: 170px;
+			text-align: center;
+
+			&:first-child {
+				margin-right: 16px;
+			}
+		}
+	}
 
 	.hero-title {
 		margin-bottom: 24px;
@@ -130,17 +202,5 @@
 
 	.device-mockup {
 		max-width: none;
-	}
-
-	.hero-cta {
-		margin: 0;
-
-		.button {
-			min-width: 170px;
-
-			&:first-child {
-				margin-right: 16px;
-			}
-		}
 	}
 }
