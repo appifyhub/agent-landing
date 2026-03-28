@@ -1,6 +1,6 @@
 {
   "name": "the-agent",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "The Agent · Our intelligent assistant",
   "author": "AppifyHub <contact@appifyhub.com>",
   "attribution": "Pasquale Vitiello <pasqualevitiello@gmail.com>",
@@ -15,7 +15,7 @@
   "scripts": {
     "autoprefixer": "postcss dist/css/*.css --use autoprefixer --no-map --replace",
     "clean": "rimraf dist/{css/*,js/*,images/*}",
-    "imagemin": "imagemin src/images/* -o dist/images",
+    "imagemin": "imagemin src/images/* -o dist/images && cp -r src/images/features dist/images/",
     "lint": "eslint src/js || true",
     "lint-scss": "stylelint \"src/scss/*.scss\" || true",
     "scss": "sass --style=compressed --no-source-map src/scss:dist/css",
