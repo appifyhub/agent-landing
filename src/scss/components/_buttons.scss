@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "../abstracts" as *;
+
 .button {
     display: inline-flex;
     @include font-size(8, mobile, true, false, true);
@@ -22,7 +25,7 @@
     white-space: nowrap;
 
 	&:hover {
-		background: lighten(color(bg, 3), 1%);
+		background: color.adjust(color(bg, 3), $lightness: 1%);
 	}
 
     &:active {

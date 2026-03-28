@@ -1,5 +1,8 @@
+@use "sass:color";
+@use "../abstracts" as *;
+
 .is-boxed {
-    background: lighten(desaturate(color(bg, 1), 15%), 2%);
+    background: color.adjust(color(bg, 1), $saturation: -15%, $lightness: 2%);
 }
 
 .body-wrap {

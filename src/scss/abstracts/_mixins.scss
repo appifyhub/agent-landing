@@ -1,8 +1,13 @@
+@use "sass:map";
+@use "sass:string";
+@use "variables" as *;
+@use "functions" as *;
+
 // Font-size + Line-height + Kerning
 // Usage: @include font-size(1, mobile)
 // Add more true/false args to control what to output: font-size, line-height, kerning
 @mixin font-size($size, $elem, $font-size: true, $line-height: false, $kerning: false, $adjust-font-size: 0) {
-	@if not map-has-key(map-get($font__scale, $elem), $size) {
+	@if not map.has-key(map.get($font__scale, $elem), $size) {
 		@warn "'#{$size}' key does not exist in array!";
 	}
 	@if ( $font-size != false ) {
@@ -18,7 +23,7 @@
 
 // Font Family
 @mixin font-family($elem) {
-	font-family: unquote(get-font-family($elem));
+	font-family: string.unquote(get-font-family($elem));
 }
 
 // Font Weight

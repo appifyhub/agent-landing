@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "../abstracts" as *;
+
 .input,
 .textarea {
     background-color: color(typography, 1);
@@ -22,7 +25,7 @@
     }
 
     &:hover {
-        border-color: darken(color(bg, 3), 5%);
+        border-color: color.adjust(color(bg, 3), $lightness: -5%);
     }
 
     &:active,
