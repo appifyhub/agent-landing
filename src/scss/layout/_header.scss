@@ -1,3 +1,5 @@
+@use "../abstracts" as *;
+
 .site-header {
     position: relative;
     padding: 24px 0;
@@ -16,8 +18,12 @@
 .site-header-inner {
     position: relative; /* To display all elements above the background color */
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+
+    @include media( '>medium' ) {
+        justify-content: space-between;
+    }
 }
 
 .header-links {
