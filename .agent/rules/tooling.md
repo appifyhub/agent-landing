@@ -1,5 +1,6 @@
 ---
-trigger: always_on
+trigger: glob
+globs: *.html,*.scss,*.js
 ---
 
 ## MANDATORY PROJECT RULES
@@ -7,24 +8,38 @@ trigger: always_on
 ### Stack
 
 - Vanilla HTML, SCSS, and JavaScript — no frameworks
-- npm for dependency management and script execution
-- All commands must be run from project root (where `package.json` exists)
+- Keep source files in `index.html`, `src/scss/`, `src/js/`, and `src/images/`
+- `dist/` is built output; never edit files there directly
+- ALL commands must be run from project root (where `package.json` exists)
+
+### Environment Management
+
+- ALWAYS use both `bun` and `npm` for dependency management
+- ALWAYS use `bun` for commands and task execution; use `npm` only when dependency management requires it
+- Use tools from `package.json` for linting, building, serving, image optimization, and asset copying
 
 ### Development Workflow
 
-- `npm run watch` — starts dev server with live reload (BrowserSync) and watches all sources
-- `npm run build` — full production build: lints, compiles SCSS, minifies JS, optimizes images
-- `npm run build:css` — lint SCSS, compile Sass, add vendor prefixes
-- `npm run build:js` — lint JS, minify with uglifyjs
-- `npm run lint` — ESLint check on `src/js/`
-- `npm run lint-scss` — StyleLint check on `src/scss/`
-- Always run `npm run build` before committing (pre-commit hook does this automatically)
+- `bun run watch` — starts BrowserSync with live reload and watches all sources
+- `bun run build` — full production build: lints, compiles SCSS, minifies JS, optimizes images, and copies assets
+- `bun run build:css` — lint SCSS, compile Sass, add vendor prefixes
+- `bun run build:js` — lint JS and minify with uglifyjs
+- `bun run lint` — ESLint check on `src/js/`
+- `bun run lint-scss` — StyleLint check on `src/scss/`
+- Always run `bun run build` before committing or at the end of implementation tasks
 
 ### Project Structure
 
-- `src/scss/` — SCSS source files (7-1 pattern: abstracts, base, components, layout)
-- `src/js/main.js` — Vanilla JS entry point (animations, scroll effects)
-- `src/images/` — Source images (optimized via imagemin on build)
-- `dist/` — Built output, auto-generated; never edit files here directly
-- `index.html` — Main page, edit this directly
+- Version is managed through the `version` property of `package.json`
+- `src/scss/` — SCSS source files
+- `src/js/main.js` — vanilla JS entry point for animations and scroll effects
+- `src/images/` — source images optimized during build
+- `dist/` — generated output; do not edit directly
+- `index.html` — main page, edited directly
 - Netlify deploys from `dist/` on git push
+
+### RTK - Rust Token Killer
+
+- Use RTK for shell-command output reduction when running commands directly
+- Use `rtk gain`, `rtk gain --history`, `rtk discover`, and `rtk proxy <cmd>` directly for RTK meta operations
+- Prefer `rtk <cmd>` for shell commands with potentially large output when the environment does not rewrite commands automatically
