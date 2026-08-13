@@ -11,8 +11,6 @@
     "font-family-name-quotes": null,
     "selector-attribute-quotes": null,
     "number-max-precision": null,
-    "declaration-block-no-duplicate-properties": null,
-    "no-duplicate-selectors": null,
     "at-rule-empty-line-before": null,
     "media-feature-range-notation": null,
     "function-url-quotes": null,

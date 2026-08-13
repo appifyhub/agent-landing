@@ -1,0 +1,48 @@
+.faq-grid {
+	display: grid;
+	gap: 90px;
+	grid-template-columns: 0.75fr 1.25fr;
+}
+
+.faq-heading {
+	align-self: start;
+	position: sticky;
+	top: 130px;
+}
+
+.faq-list {
+	border-top: 1px solid var(--line);
+}
+
+.faq-list details {
+	border-bottom: 1px solid var(--line);
+	padding: 23px 0;
+}
+
+.faq-list summary {
+	color: var(--text);
+	cursor: pointer;
+	font-size: 0.96rem;
+	font-weight: 500;
+	list-style: none;
+	padding-right: 40px;
+	position: relative;
+}
+
+.faq-list summary::after {
+	color: var(--text-muted);
+	content: "+";
+	font-family: var(--font);
+	position: absolute;
+	right: 4px;
+}
+
+.faq-list details[open] summary::after {
+	content: "−";
+}
+
+.faq-list details p {
+	font-size: 0.82rem;
+	margin: 16px 50px 0 0;
+	max-width: 650px;
+}

@@ -1,0 +1,18 @@
+.open-source {
+	padding-block: calc(var(--space) * 0.6);
+}
+
+.open-source-cta {
+	align-items: end;
+	display: grid;
+	gap: 80px;
+	grid-template-columns: 1fr auto;
+}
+
+.open-source-cta h2 {
+	margin-bottom: 18px;
+}
+
+.open-source-actions {
+	flex-direction: column;
+}
