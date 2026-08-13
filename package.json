@@ -1,6 +1,6 @@
 {
   "name": "the-agent",
-  "version": "5.1.1",
+  "version": "6.0.0",
   "description": "The Agent · Our intelligent assistant",
   "author": "AppifyHub <contact@appifyhub.com>",
   "attribution": "Pasquale Vitiello <pasqualevitiello@gmail.com>",
@@ -29,7 +29,7 @@
     "watch:js": "onchange \"src/js\" -- run-s build:js",
     "watch:images": "onchange \"src/images\" -- run-s build:images",
     "watch": "run-p serve watch:*",
-    "copy-assets": "cp -r favicon/ dist/favicon/ && rm -rf dist/dist/ && cp -r dist/ tmp/ && mv tmp/ dist/dist/ && cp index.html favicon.ico dist/",
+    "copy-assets": "cp -r favicon/ dist/favicon/ && rm -rf dist/dist/ && cp -r dist/ tmp/ && mv tmp/ dist/dist/ && cp index.html favicon.ico robots.txt sitemap.xml dist/",
     "postinstall": "run-s build copy-assets"
   },
   "devDependencies": {
