@@ -1,0 +1,223 @@
+.narrow-intro {
+	margin-bottom: clamp(48px, 7vw, 86px);
+	max-width: 950px;
+}
+
+.narrow-intro h2 {
+	margin-bottom: 28px;
+}
+
+.narrow-intro > p:last-child,
+.section-heading > p,
+.start-inner > p {
+	font-size: clamp(1rem, 1.5vw, 1.15rem);
+	max-width: 680px;
+}
+
+.comparison-list {
+	background: rgba(255, 255, 255, 0.07);
+	border: 1px solid var(--line);
+	border-radius: 28px;
+	box-shadow:
+		-32px 10px 90px rgba(73, 121, 220, 0.1),
+		32px 18px 90px rgba(211, 79, 105, 0.08),
+		0 28px 70px rgba(4, 10, 22, 0.24);
+	margin-inline: auto;
+	overflow: hidden;
+	padding-inline: clamp(20px, 4vw, 46px);
+	width: calc(100% - 24px);
+}
+
+.comparison-kicker {
+	margin: 0;
+	padding: 28px 0 20px;
+}
+
+.comparison-row {
+	align-items: center;
+	border-bottom: 1px solid var(--line);
+	display: grid;
+	grid-template-columns: 1fr 60px 1fr;
+	min-height: 94px;
+}
+
+.comparison-row:last-child {
+	border-bottom: 0;
+}
+
+.comparison-row > span:first-child {
+	color: #707079;
+}
+
+.comparison-row strong {
+	color: var(--text);
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.comparison-arrow {
+	color: var(--red);
+	font-family: var(--font);
+}
+
+@media (min-width: 761px) {
+	.comparison-row > span:first-child,
+	.comparison-row strong {
+		font-size: 1.1rem;
+	}
+}
+
+.section-heading {
+	margin-bottom: clamp(46px, 7vw, 84px);
+}
+
+.walkthrough-grid {
+	display: grid;
+	gap: 18px;
+}
+
+.walkthrough-heading,
+.explorer-heading {
+	max-width: 950px;
+}
+
+.walkthrough-heading h2,
+.explorer-heading h2 {
+	margin-bottom: 28px;
+}
+
+.walkthrough-heading > p:last-child,
+.explorer-heading > p:last-child {
+	max-width: 680px;
+}
+
+.walkthrough-steps {
+	border: 1px solid var(--line-strong);
+	border-radius: 22px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	overflow: hidden;
+}
+
+.walkthrough-steps button {
+	background: rgba(255, 255, 255, 0.015);
+	border: 0;
+	border-right: 1px solid var(--line);
+	color: #858590;
+	cursor: pointer;
+	display: grid;
+	gap: 5px;
+	min-width: 0;
+	padding: 22px 24px;
+	text-align: left;
+}
+
+.walkthrough-steps button:last-child {
+	border-right: 0;
+	border-radius: 0 21px 21px 0;
+}
+
+.walkthrough-steps button:first-child {
+	border-radius: 21px 0 0 21px;
+}
+
+.walkthrough-steps button > span {
+	color: var(--coral);
+	font-size: 0.82rem;
+	font-weight: 700;
+}
+
+.walkthrough-steps button strong {
+	color: var(--text);
+	font-size: 1.02rem;
+}
+
+.walkthrough-steps button small {
+	font-size: 0.8rem;
+	line-height: 1.45;
+}
+
+.walkthrough-steps button[aria-selected="true"] {
+	background: linear-gradient(120deg, rgba(215, 76, 98, 0.15), rgba(87, 74, 142, 0.12));
+	box-shadow: inset 0 -2px var(--coral);
+}
+
+.walkthrough-steps button:focus-visible {
+	outline: 2px solid var(--coral);
+	outline-offset: -3px;
+}
+
+.walkthrough-preview {
+	background: rgba(8, 9, 14, 0.42);
+	border: 1px solid var(--line-strong);
+	border-radius: 28px;
+	overflow: hidden;
+}
+
+.walkthrough-panel {
+	align-items: stretch;
+	display: grid;
+	grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+}
+
+.js .walkthrough-panel[hidden] {
+	display: none;
+}
+
+.walkthrough-media {
+	align-self: stretch;
+	border-right: 12px solid #11121d;
+	min-width: 0;
+	overflow: hidden;
+}
+
+.walkthrough-product-shot {
+	border: 0;
+	border-radius: 0;
+	height: 100%;
+	object-fit: cover;
+}
+
+.walkthrough-media-cropped .walkthrough-product-shot {
+	max-width: none;
+	transform: translateX(0px);
+	width: calc(100% + 40px);
+}
+
+.walkthrough-copy {
+	align-content: center;
+	display: grid;
+	padding: clamp(28px, 4vw, 52px);
+}
+
+.walkthrough-copy h3 {
+	font-size: clamp(1.55rem, 2.5vw, 2.4rem);
+	margin: 12px 0 18px;
+}
+
+.walkthrough-proof {
+	border-top: 1px solid var(--line);
+	display: grid;
+	gap: 18px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin: 28px 0 0;
+	padding-top: 20px;
+}
+
+.walkthrough-proof div {
+	min-width: 0;
+}
+
+.walkthrough-proof dt {
+	color: #73737d;
+	font-size: 0.68rem;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.walkthrough-proof dd {
+	color: var(--text);
+	font-size: 0.78rem;
+	margin: 6px 0 0;
+}

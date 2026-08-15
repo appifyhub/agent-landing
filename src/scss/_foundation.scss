@@ -1,0 +1,218 @@
+:root {
+	--canvas: #000;
+	--line: rgba(214, 224, 246, 0.1);
+	--line-strong: rgba(214, 224, 246, 0.18);
+	--text: #f5f5f7;
+	--text-soft: #c1c2cc;
+	--text-muted: #9093a2;
+	--red: #e95668;
+	--coral: #f28a78;
+	--navbar-background: rgba(11, 12, 18, 0.42);
+	--navbar-background-scrolled: rgba(15, 17, 25, 0.82);
+	--navbar-border: rgba(130, 139, 166, 0.12);
+	--navbar-border-scrolled: rgba(222, 227, 241, 0.17);
+	--font: "Inter", -apple-system, blinkmacsystemfont, "Segoe UI", sans-serif;
+	--container: 1200px;
+	--gutter: clamp(20px, 4vw, 48px);
+	--space: clamp(96px, 12vw, 176px);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--canvas);
+	overflow-x: clip;
+	scroll-behavior: smooth;
+	scroll-padding-top: 112px;
+}
+
+body {
+	margin: 0;
+	background: var(--canvas);
+	color: var(--text-soft);
+	font-family: var(--font);
+	font-size: 16px;
+	line-height: 1.65;
+	overflow-x: hidden;
+}
+
+body.menu-open {
+	overflow: hidden;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+}
+
+a {
+	color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+	border-radius: 6px;
+	outline: 2px solid var(--coral);
+	outline-offset: 4px;
+}
+
+h1,
+h2,
+h3,
+p {
+	margin-top: 0;
+}
+
+h2,
+h3 {
+	color: var(--text);
+	font-weight: 600;
+	letter-spacing: -0.04em;
+	line-height: 1.08;
+}
+
+h2 {
+	font-size: clamp(2.25rem, 5vw, 4.75rem);
+}
+
+h3 {
+	font-size: clamp(1.35rem, 2vw, 2rem);
+}
+
+.container {
+	margin-inline: auto;
+	max-width: calc(var(--container) + (var(--gutter) * 2));
+	padding-inline: var(--gutter);
+	width: 100%;
+}
+
+.section {
+	padding-block: var(--space);
+	position: relative;
+}
+
+.section-surface {
+	background:
+		radial-gradient(circle at 8% 18%, rgba(106, 111, 169, 0.13), transparent 32%),
+		linear-gradient(145deg, #242835, #1c202b);
+	border-radius: clamp(36px, 6vw, 84px);
+	margin: 12px;
+}
+
+.walkthrough,
+.explorer {
+	background:
+		radial-gradient(circle at 8% 18%, rgba(121, 125, 179, 0.08), transparent 32%),
+		linear-gradient(145deg, #111421, #0d0e15);
+	padding-block: calc(var(--space) / 2);
+}
+
+.sr-only {
+	clip: rect(0, 0, 0, 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+.skip-link {
+	background: var(--text);
+	color: var(--canvas);
+	font-weight: 600;
+	left: 16px;
+	padding: 10px 16px;
+	position: fixed;
+	top: -80px;
+	z-index: 100;
+}
+
+.skip-link:focus {
+	top: 16px;
+}
+
+.section-kicker,
+.eyebrow,
+.story-label,
+.status-label {
+	color: var(--coral);
+	font-family: var(--font);
+	font-size: 0.85rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.button {
+	align-items: center;
+	border: 1px solid transparent;
+	border-radius: 12px;
+	display: inline-flex;
+	font-size: 0.82rem;
+	font-weight: 600;
+	gap: 10px;
+	justify-content: center;
+	min-height: 44px;
+	padding: 11px 18px;
+	text-decoration: none;
+	transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.button:hover {
+	transform: translateY(-1px);
+}
+
+.button-primary {
+	background: var(--text);
+	color: #111116;
+}
+
+.button-primary:hover {
+	background: #fff;
+}
+
+.button-secondary,
+.button-quiet {
+	background: rgba(255, 255, 255, 0.045);
+	border-color: var(--line-strong);
+	color: var(--text);
+}
+
+.button-secondary:hover,
+.button-quiet:hover {
+	background: rgba(255, 255, 255, 0.085);
+	border-color: rgba(255, 255, 255, 0.28);
+}
+
+.button-small {
+	font-size: 0.73rem;
+	min-height: 36px;
+	padding: 8px 13px;
+}
+
+.text-link,
+.supporting-capabilities a {
+	color: var(--text);
+	font-size: 0.8rem;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.text-link:hover,
+.supporting-capabilities a:hover {
+	color: var(--coral);
+}

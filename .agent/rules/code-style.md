@@ -1,9 +1,16 @@
 ---
-trigger: always_on
+trigger: glob
+globs: *.html,*.scss,*.js
 ---
 
 ### Code style
 
-#### JavaScript/TypeScript
+#### HTML, SCSS, and JavaScript
 
-In JavaScript and TypeScript, use types as much as possible: strict mode will be turned on! If in doubt, follow Java standard formatting. Finally, we also always want trailing commas in multi-line code blocks.
+Use clear, idiomatic vanilla HTML, SCSS, and JavaScript. Keep behavior in `src/js/`, styles in `src/scss/`, and generated output in `dist/`. Prefer simple DOM code over adding abstractions or framework patterns.
+
+#### Comments
+
+- For new code, avoid comments unless the logic is genuinely complex or the block is long
+- When editing existing code, prefer updating comments over deleting them
+- Comments should start with a lowercase line, except in documentation or where grammar requires it

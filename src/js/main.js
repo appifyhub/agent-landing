@@ -1,130 +1,293 @@
 (function () {
-  const win = window
   const doc = document.documentElement
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 
   doc.classList.remove('no-js')
   doc.classList.add('js')
 
-  // Reveal animations
-  if (document.body.classList.contains('has-animations')) {
-    /* global ScrollReveal */
-    const sr = window.sr = ScrollReveal()
+  function track (eventName, properties) {
+    const detail = { event: eventName, properties: properties || {} }
 
-    sr.reveal('.feature', {
-      duration: 600,
-      distance: '20px',
-      easing: 'cubic-bezier(0.5, -0.01, 0, 1.005)',
-      origin: 'right',
-      interval: 100
+    if (window.agentAnalytics && typeof window.agentAnalytics.track === 'function') {
+      window.agentAnalytics.track(eventName, detail.properties)
+    }
+
+    window.dispatchEvent(new CustomEvent('agent:analytics', { detail }))
+  }
+
+  const header = document.querySelector('[data-header]')
+  const menuToggle = document.querySelector('.menu-toggle')
+  const navigation = document.querySelector('.site-navigation')
+
+  function closeMenu () {
+    if (!menuToggle || !navigation) return
+
+    menuToggle.setAttribute('aria-expanded', 'false')
+    navigation.classList.remove('is-open')
+    document.body.classList.remove('menu-open')
+  }
+
+  if (header) {
+    const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 16)
+
+    updateHeader()
+    window.addEventListener('scroll', updateHeader, { passive: true })
+  }
+
+  if (menuToggle && navigation) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true'
+
+      menuToggle.setAttribute('aria-expanded', String(!isOpen))
+      navigation.classList.toggle('is-open', !isOpen)
+      document.body.classList.toggle('menu-open', !isOpen)
     })
 
-    sr.reveal('.media-canvas', {
-      duration: 600,
-      scale: '.95',
-      easing: 'cubic-bezier(0.5, -0.01, 0, 1.005)',
-      viewFactor: 0.5
+    navigation.addEventListener('click', (event) => {
+      if (event.target.closest('a')) closeMenu()
+    })
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu()
     })
   }
 
-  // Wait that device mockup has loaded before displaying
-  const deviceMockup = document.querySelector('.device-mockup')
+  const sectionLinks = Array.from(document.querySelectorAll('.site-navigation a[href^="#"]'))
+  const sectionTargets = sectionLinks
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean)
 
-  function deviceMockupLoaded () {
-    deviceMockup.classList.add('has-loaded')
+  function focusHashTarget () {
+    if (!window.location.hash || window.location.hash.startsWith('#features/')) return
+
+    const target = document.querySelector(window.location.hash)
+
+    if (!target) return
+    target.tabIndex = -1
+    target.focus({ preventScroll: true })
   }
 
-  if (deviceMockup.complete) {
-    deviceMockupLoaded()
-  } else {
-    deviceMockup.addEventListener('load', deviceMockupLoaded)
+  sectionLinks.forEach((link) => {
+    link.addEventListener('click', () => window.setTimeout(focusHashTarget, 0))
+  })
+  window.addEventListener('hashchange', focusHashTarget)
+
+  if ('IntersectionObserver' in window && sectionTargets.length) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      const visibleSection = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+
+      if (!visibleSection) return
+
+      sectionLinks.forEach((link) => {
+        const isCurrent = link.getAttribute('href') === `#${visibleSection.target.id}`
+        if (isCurrent) link.setAttribute('aria-current', 'location')
+        else link.removeAttribute('aria-current')
+      })
+    }, { rootMargin: '-20% 0px -65%', threshold: [0, 0.25, 0.5] })
+
+    sectionTargets.forEach((target) => sectionObserver.observe(target))
   }
 
-  // Features title adjustment
-  const featuresSection = document.querySelector('.features')
-  const featuresTitle = featuresSection.querySelector('.section-title')
-  const firstFeature = document.querySelector('.feature-inner')
+  const typewriter = document.querySelector('[data-typewriter]')
+  const typewriterPhrases = [
+    'brings leading models together',
+    'works where you chat',
+    'costs only when you use it',
+    'runs in lockdown mode',
+    'doesn\'t ask for a subscription'
+  ]
 
-  featuresTitlePos()
-  win.addEventListener('resize', featuresTitlePos)
+  if (typewriter && !reducedMotion.matches) {
+    typewriter.textContent = ''
 
-  function featuresTitlePos () {
-    const featuresSectionLeft = featuresSection.querySelector('.features-inner').getBoundingClientRect().left
-    const firstFeatureLeft = firstFeature.getBoundingClientRect().left
-    const featuresTitleOffset = parseInt(firstFeatureLeft - featuresSectionLeft)
-    if (firstFeatureLeft > featuresSectionLeft) {
-      featuresTitle.style.marginLeft = `${featuresTitleOffset}px`
-    } else {
-      featuresTitle.style.marginLeft = 0
+    let phraseIndex = 0
+    let characterIndex = 0
+    let direction = 1
+    let timer
+    let heroVisible = true
+    let animationActive = !document.hidden
+
+    const schedule = (delay) => {
+      window.clearTimeout(timer)
+      timer = window.setTimeout(tick, delay)
+    }
+
+    const tick = () => {
+      if (!animationActive) return
+
+      const phrase = typewriterPhrases[phraseIndex]
+      characterIndex += direction
+      typewriter.textContent = phrase.slice(0, characterIndex)
+
+      if (direction === -1 && characterIndex === 0) {
+        phraseIndex = (phraseIndex + 1) % typewriterPhrases.length
+        direction = 1
+        schedule(280)
+        return
+      }
+
+      if (direction === 1 && characterIndex === typewriterPhrases[phraseIndex].length) {
+        direction = -1
+        schedule(2600)
+        return
+      }
+
+      schedule(direction === 1 ? 40 : 25)
+    }
+
+    const updateAnimationState = () => {
+      const nextState = !document.hidden && heroVisible
+
+      if (nextState === animationActive) return
+
+      animationActive = nextState
+
+      if (animationActive) schedule(400)
+      else window.clearTimeout(timer)
+    }
+
+    schedule(400)
+    document.addEventListener('visibilitychange', updateAnimationState)
+
+    const hero = typewriter.closest('.hero')
+
+    if (hero && 'IntersectionObserver' in window) {
+      const heroObserver = new IntersectionObserver(([entry]) => {
+        heroVisible = entry.isIntersecting
+        updateAnimationState()
+      })
+
+      heroObserver.observe(hero)
     }
   }
 
-  // Moving objects
-  const movingObjects = document.querySelectorAll('.is-moving-object')
+  const walkthrough = document.querySelector('[data-walkthrough]')
 
-  // Throttling
-  function throttle (func, milliseconds) {
-    let lastEventTimestamp = null
-    const limit = milliseconds
+  if (walkthrough) {
+    const tabs = Array.from(walkthrough.querySelectorAll('[role="tab"]'))
+    const panels = Array.from(walkthrough.querySelectorAll('[role="tabpanel"]'))
 
-    return (...args) => {
-      const now = Date.now()
+    const selectWalkthroughStep = (selectedTab) => {
+      tabs.forEach((tab) => {
+        const selected = tab === selectedTab
+        tab.setAttribute('aria-selected', selected)
+        tab.tabIndex = selected ? 0 : -1
+      })
 
-      if (!lastEventTimestamp || now - lastEventTimestamp >= limit) {
-        lastEventTimestamp = now
-        func.apply(this, args)
-      }
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.walkthroughPanel !== selectedTab.dataset.walkthroughStep
+      })
     }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectWalkthroughStep(tab))
+      tab.addEventListener('keydown', (event) => {
+        if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return
+
+        event.preventDefault()
+        const direction = ['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : -1
+        const nextTab = tabs[(index + direction + tabs.length) % tabs.length]
+
+        selectWalkthroughStep(nextTab)
+        nextTab.focus()
+      })
+    })
   }
 
-  // Init vars
-  let mouseX = 0
-  let mouseY = 0
-  let scrollY = 0
-  let coordinateX = 0
-  let coordinateY = 0
-  const winW = doc.clientWidth
-  const winH = doc.clientHeight
+  const explorer = document.querySelector('[data-explorer]')
 
-  // Move Objects
-  function moveObjects (e, object) {
-    mouseX = e.pageX
-    mouseY = e.pageY
-    scrollY = win.scrollY
-    coordinateX = (winW / 2) - mouseX
-    coordinateY = (winH / 2) - (mouseY - scrollY)
+  if (explorer) {
+    const tabs = Array.from(explorer.querySelectorAll('[role="tab"]'))
+    const panels = Array.from(explorer.querySelectorAll('[role="tabpanel"]'))
+    const panelContainer = explorer.querySelector('.explorer-panels')
+    let resizeAnimation
+    const categoryFromHash = window.location.hash.match(/^#features\/(.+)$/)
+    const initialCategory = categoryFromHash && tabs.some((tab) => tab.dataset.category === categoryFromHash[1])
+      ? categoryFromHash[1]
+      : tabs[0].dataset.category
 
-    for (let i = 0; i < object.length; i++) {
-      const translatingFactor = object[i].getAttribute('data-translating-factor') || 20
-      const rotatingFactor = object[i].getAttribute('data-rotating-factor') || 20
-      const perspective = object[i].getAttribute('data-perspective') || 500
-      let tranformProperty = []
+    const selectCategory = (category, options) => {
+      const settings = options || {}
+      const selectedTab = tabs.find((tab) => tab.dataset.category === category)
 
-      if (object[i].classList.contains('is-translating')) {
-        tranformProperty.push('translate(' + coordinateX / translatingFactor + 'px, ' + coordinateY / translatingFactor + 'px)')
+      if (!selectedTab) return
+
+      const previousHeight = panelContainer.getBoundingClientRect().height
+
+      if (resizeAnimation) {
+        resizeAnimation.cancel()
+        panelContainer.style.removeProperty('overflow')
       }
 
-      if (object[i].classList.contains('is-rotating')) {
-        tranformProperty.push('perspective(' + perspective + 'px) rotateY(' + -coordinateX / rotatingFactor + 'deg) rotateX(' + coordinateY / rotatingFactor + 'deg)')
+      tabs.forEach((tab) => {
+        const isSelected = tab === selectedTab
+        tab.setAttribute('aria-selected', String(isSelected))
+        tab.tabIndex = isSelected ? 0 : -1
+      })
+
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.panel !== category
+      })
+
+      const nextHeight = panelContainer.getBoundingClientRect().height
+
+      if (settings.animate && !reducedMotion.matches && typeof panelContainer.animate === 'function' && Math.abs(nextHeight - previousHeight) > 1) {
+        panelContainer.style.overflow = 'hidden'
+        resizeAnimation = panelContainer.animate(
+          [{ height: `${previousHeight}px` }, { height: `${nextHeight}px` }],
+          { duration: 260, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+        )
+        resizeAnimation.addEventListener('finish', () => {
+          panelContainer.style.removeProperty('overflow')
+          resizeAnimation = null
+        }, { once: true })
       }
 
-      if (object[i].classList.contains('is-translating') || object[i].classList.contains('is-rotating')) {
-        tranformProperty = tranformProperty.join(' ')
-
-        object[i].style.transform = tranformProperty
-        object[i].style.transition = 'transform 1s ease-out'
-        object[i].style.transformStyle = 'preserve-3d'
-        object[i].style.backfaceVisibility = 'hidden'
-      }
+      if (settings.focus) selectedTab.focus()
+      if (settings.updateHash) window.history.replaceState(null, '', `#features/${category}`)
+      if (settings.track) track('feature_category_selected', { category })
     }
+
+    selectCategory(initialCategory)
+
+    if (categoryFromHash) {
+      document.querySelector('#features').scrollIntoView()
+      tabs.find((tab) => tab.dataset.category === initialCategory).focus({ preventScroll: true })
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => {
+        selectCategory(tab.dataset.category, { animate: true, updateHash: true, track: true })
+      })
+
+      tab.addEventListener('keydown', (event) => {
+        let nextIndex
+
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % tabs.length
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + tabs.length) % tabs.length
+        if (event.key === 'Home') nextIndex = 0
+        if (event.key === 'End') nextIndex = tabs.length - 1
+        if (nextIndex === undefined) return
+
+        event.preventDefault()
+        selectCategory(tabs[nextIndex].dataset.category, { animate: true, focus: true, updateHash: true, track: true })
+      })
+    })
   }
 
-  // Call function with throttling
-  if (movingObjects) {
-    win.addEventListener('mousemove', throttle(
-      function (e) {
-        moveObjects(e, movingObjects)
-      },
-      150
-    ))
-  }
+  document.addEventListener('click', (event) => {
+    const trackedElement = event.target.closest('[data-track]')
+
+    if (trackedElement) {
+      track(trackedElement.dataset.track, { source: trackedElement.dataset.source || 'page' })
+    }
+  })
+
+  document.querySelectorAll('.faq-list details').forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (item.open) track('faq_opened', { question: item.querySelector('summary').textContent.trim() })
+    })
+  })
 }())

@@ -1,6 +1,8 @@
 {
   "name": "Abot",
   "short_name": "Abot",
+  "id": "/",
+  "start_url": "/",
   "icons": [
     {
       "src": "/favicon/web-app-manifest-192x192.png",
