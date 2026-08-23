@@ -34,6 +34,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
 	<link rel="stylesheet" href="css/style.css">
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
@@ -114,32 +115,32 @@
 
 <body>
 	<a class="skip-link" href="#main-content">Skip to content</a>
-	<header class="site-header" data-header>
+	<header class="site-header" data-header data-analytics-area="header">
 		<div class="header-shell">
 			<div class="container header-inner">
-				<a class="brand-lockup" href="#top" aria-label="The Agent, back to top">
+				<a class="brand-lockup" href="#top" aria-label="The Agent, back to top" data-analytics-id="header_home">
 					<img src="images/icon.png" width="44" height="44" alt="">
 					<span>The Agent</span>
 				</a>
-				<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+				<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" data-analytics-id="header_menu">
 					<span class="sr-only">Menu</span>
 					<span class="menu-lines" aria-hidden="true"></span>
 				</button>
 				<div class="header-actions">
-					<a class="button button-quiet button-small header-beta" href="#start">Try it out</a>
+					<a class="button button-quiet button-small header-beta" href="#start" data-analytics-id="header_try">Try it out</a>
 				</div>
 			</div>
 			<nav class="site-navigation" id="site-navigation" aria-label="Primary navigation">
-				<a href="#how-it-works">How it works</a>
-				<a href="#features">Features</a>
-				<a href="#open-source">Open source</a>
-				<a href="#faq">Help</a>
+				<a href="#how-it-works" data-analytics-id="header_how_it_works">How it works</a>
+				<a href="#features" data-analytics-id="header_features">Features</a>
+				<a href="#open-source" data-analytics-id="header_open_source">Open source</a>
+				<a href="#faq" data-analytics-id="header_faq">Help</a>
 			</nav>
 		</div>
 	</header>
 
 	<main id="main-content">
-		<section class="hero" id="top" aria-labelledby="hero-heading">
+		<section class="hero" id="top" aria-labelledby="hero-heading" data-analytics-section="home">
 			<div class="hero-glow" aria-hidden="true"></div>
 			<div class="container hero-center">
 				<div class="hero-copy">
@@ -151,13 +152,13 @@
 					</h1>
 					<p class="hero-intro">Use leading models for text, image, video, search, and reasoning through one assistant in your choice of supported chat apps – privately or in groups. Bring your own API keys, schedule messages and alerts, pay only for the models you use, or self-host the complete open-source stack.</p>
 					<div class="hero-actions">
-						<a class="button button-primary" href="#how-it-works" data-track="hero_how_it_works_clicked">See how it works</a>
-						<a class="button button-secondary" href="https://github.com/appifyhub/agent-backend#how-to-build-and-run" target="_blank" rel="noreferrer" data-track="self_host_guide_opened" data-source="hero">Use it self-hosted</a>
+						<a class="button button-primary" href="#how-it-works" data-track="hero_how_it_works_clicked" data-analytics-id="hero_how_it_works">See how it works</a>
+						<a class="button button-secondary" href="https://github.com/appifyhub/agent-backend#how-to-build-and-run" target="_blank" rel="noreferrer" data-track="self_host_guide_opened" data-source="hero" data-analytics-id="hero_self_host">Use it self-hosted</a>
 					</div>
 					<div class="hero-beta-links">
 						<span>Check out hosted beta:</span>
-						<a class="hero-beta-telegram" href="https://t.me/the_agent_abot" target="_blank" rel="noreferrer" data-track="beta_access_opened" data-source="hero-telegram">Telegram <span aria-hidden="true">↗</span></a>
-						<a class="hero-beta-whatsapp" href="https://wa.me/16185982158" target="_blank" rel="noreferrer" data-track="beta_access_opened" data-source="hero-whatsapp">WhatsApp <span aria-hidden="true">↗</span></a>
+						<a class="hero-beta-telegram" href="https://t.me/the_agent_abot" target="_blank" rel="noreferrer" data-track="beta_access_opened" data-source="hero-telegram" data-analytics-id="hero_telegram">Telegram <span aria-hidden="true">↗</span></a>
+						<a class="hero-beta-whatsapp" href="https://wa.me/16185982158" target="_blank" rel="noreferrer" data-track="beta_access_opened" data-source="hero-whatsapp" data-analytics-id="hero_whatsapp">WhatsApp <span aria-hidden="true">↗</span></a>
 					</div>
 				</div>
 			</div>
@@ -166,7 +167,7 @@
 			</div>
 		</section>
 
-		<section class="point-of-view section" aria-labelledby="point-of-view-title">
+		<section class="point-of-view section" aria-labelledby="point-of-view-title" data-analytics-section="point_of_view">
 			<div class="container narrow-intro">
 				<p class="section-kicker">Subscriptions suck</p>
 				<h2 id="point-of-view-title">We love specialized AI, but not a collection of subscriptions.</h2>
@@ -197,7 +198,7 @@
 			</div>
 		</section>
 
-		<section class="walkthrough section section-surface" id="how-it-works" aria-labelledby="walkthrough-title">
+		<section class="walkthrough section section-surface" id="how-it-works" aria-labelledby="walkthrough-title" data-analytics-section="how_it_works">
 			<div class="container section-heading walkthrough-heading">
 				<p class="section-kicker">How it works</p>
 				<h2 id="walkthrough-title">One assistant, everywhere. You make the important choices.</h2>
@@ -205,17 +206,17 @@
 			</div>
 			<div class="container walkthrough-grid" data-walkthrough>
 				<div class="walkthrough-steps" role="tablist" aria-label="Product walkthrough steps">
-					<button type="button" role="tab" id="walkthrough-tab-task" aria-controls="walkthrough-panel-task" aria-selected="true" data-walkthrough-step="task">
+					<button type="button" role="tab" id="walkthrough-tab-task" aria-controls="walkthrough-panel-task" aria-selected="true" data-walkthrough-step="task" data-analytics-id="walkthrough_task">
 						<span>1</span>
 						<strong>Use language intelligence</strong>
 						<small>Ask, search, create, edit, and more.</small>
 					</button>
-					<button type="button" role="tab" id="walkthrough-tab-model" aria-controls="walkthrough-panel-model" aria-selected="false" tabindex="-1" data-walkthrough-step="model">
+					<button type="button" role="tab" id="walkthrough-tab-model" aria-controls="walkthrough-panel-model" aria-selected="false" tabindex="-1" data-walkthrough-step="model" data-analytics-id="walkthrough_model">
 						<span>2</span>
 						<strong>Configure anything</strong>
 						<small>Choose models and tools for every capability.</small>
 					</button>
-					<button type="button" role="tab" id="walkthrough-tab-run" aria-controls="walkthrough-panel-run" aria-selected="false" tabindex="-1" data-walkthrough-step="run">
+					<button type="button" role="tab" id="walkthrough-tab-run" aria-controls="walkthrough-panel-run" aria-selected="false" tabindex="-1" data-walkthrough-step="run" data-analytics-id="walkthrough_run">
 						<span>3</span>
 						<strong>Choose how to run it</strong>
 						<small>Use your keys, use hosted credits, or self-host.</small>
@@ -268,7 +269,7 @@
 			</div>
 		</section>
 
-		<section class="stories section" aria-labelledby="stories-title">
+		<section class="stories section" aria-labelledby="stories-title" data-analytics-section="stories">
 			<div class="container section-heading">
 				<p class="section-kicker">Beyond simple 1:1 replies</p>
 				<h2 id="stories-title">More than a private prompt box.</h2>
@@ -295,7 +296,7 @@
 			</div>
 		</section>
 
-		<section class="explorer section section-surface" id="features" aria-labelledby="explorer-title">
+		<section class="explorer section section-surface" id="features" aria-labelledby="explorer-title" data-analytics-section="features">
 			<div class="container section-heading explorer-heading">
 				<p class="section-kicker">Feature explorer</p>
 				<h2 id="explorer-title">One agent for everyday questions and advanced assignments.</h2>
@@ -303,12 +304,12 @@
 			</div>
 			<div class="container explorer-shell" data-explorer>
 				<div class="explorer-tabs" role="tablist" aria-label="Capability categories">
-					<button type="button" role="tab" id="tab-ask-reason" aria-controls="panel-ask-reason" aria-selected="true" data-category="ask-reason">Ask and reason</button>
-					<button type="button" role="tab" id="tab-search-monitor" aria-controls="panel-search-monitor" aria-selected="false" tabindex="-1" data-category="search-monitor">Look up and Search</button>
-					<button type="button" role="tab" id="tab-see-create" aria-controls="panel-see-create" aria-selected="false" tabindex="-1" data-category="see-create">See and create</button>
-					<button type="button" role="tab" id="tab-hear-transcribe" aria-controls="panel-hear-transcribe" aria-selected="false" tabindex="-1" data-category="hear-transcribe">Hear and transcribe</button>
-					<button type="button" role="tab" id="tab-groups-actions" aria-controls="panel-groups-actions" aria-selected="false" tabindex="-1" data-category="groups-actions">Groups and actions</button>
-					<button type="button" role="tab" id="tab-control-hosting" aria-controls="panel-control-hosting" aria-selected="false" tabindex="-1" data-category="control-hosting">Cost control</button>
+					<button type="button" role="tab" id="tab-ask-reason" aria-controls="panel-ask-reason" aria-selected="true" data-category="ask-reason" data-analytics-id="features_ask_reason">Ask and reason</button>
+					<button type="button" role="tab" id="tab-search-monitor" aria-controls="panel-search-monitor" aria-selected="false" tabindex="-1" data-category="search-monitor" data-analytics-id="features_search_monitor">Look up and Search</button>
+					<button type="button" role="tab" id="tab-see-create" aria-controls="panel-see-create" aria-selected="false" tabindex="-1" data-category="see-create" data-analytics-id="features_see_create">See and create</button>
+					<button type="button" role="tab" id="tab-hear-transcribe" aria-controls="panel-hear-transcribe" aria-selected="false" tabindex="-1" data-category="hear-transcribe" data-analytics-id="features_hear_transcribe">Hear and transcribe</button>
+					<button type="button" role="tab" id="tab-groups-actions" aria-controls="panel-groups-actions" aria-selected="false" tabindex="-1" data-category="groups-actions" data-analytics-id="features_groups_actions">Groups and actions</button>
+					<button type="button" role="tab" id="tab-control-hosting" aria-controls="panel-control-hosting" aria-selected="false" tabindex="-1" data-category="control-hosting" data-analytics-id="features_control_hosting">Cost control</button>
 				</div>
 
 				<div class="explorer-panels">
@@ -398,11 +399,11 @@
 				</div>
 			</div>
 			<div class="container explorer-code-link">
-				<a class="text-link" href="https://github.com/search?q=repo%3Aappifyhub%2Fagent-backend+external+tool&amp;type=code" target="_blank" rel="noreferrer">See features in code <span aria-hidden="true">↗</span></a>
+				<a class="text-link" href="https://github.com/search?q=repo%3Aappifyhub%2Fagent-backend+external+tool&amp;type=code" target="_blank" rel="noreferrer" data-analytics-id="features_code_search">See features in code <span aria-hidden="true">↗</span></a>
 			</div>
 		</section>
 
-		<section class="open-source section" id="open-source" aria-labelledby="open-source-title">
+		<section class="open-source section" id="open-source" aria-labelledby="open-source-title" data-analytics-section="open_source">
 			<div class="container open-source-cta">
 				<div>
 					<p class="section-kicker">Open-source</p>
@@ -410,33 +411,33 @@
 					<p>Connect your model providers and supported chat surfaces, keep control of the deployment, and use your own encryption keys. If you're technical, feel free to contribute to the project and help build features.</p>
 				</div>
 				<div class="open-source-actions">
-					<a class="button button-primary" href="https://github.com/appifyhub/agent-backend#how-to-build-and-run" target="_blank" rel="noreferrer" data-track="self_host_guide_opened" data-source="open-source">Read the self-host guide</a>
-					<a class="button button-secondary" href="https://github.com/orgs/appifyhub/repositories?q=agent" target="_blank" rel="noreferrer" data-track="source_repo_opened" data-source="organization">View the repositories</a>
+					<a class="button button-primary" href="https://github.com/appifyhub/agent-backend#how-to-build-and-run" target="_blank" rel="noreferrer" data-track="self_host_guide_opened" data-source="open-source" data-analytics-id="open_source_self_host">Read the self-host guide</a>
+					<a class="button button-secondary" href="https://github.com/orgs/appifyhub/repositories?q=agent" target="_blank" rel="noreferrer" data-track="source_repo_opened" data-source="organization" data-analytics-id="open_source_repositories">View the repositories</a>
 				</div>
 			</div>
 		</section>
 
-		<section class="start section" id="start" aria-labelledby="start-title">
+		<section class="start section" id="start" aria-labelledby="start-title" data-analytics-section="start">
 			<div class="start-glow" aria-hidden="true"></div>
 			<div class="container start-inner">
 				<p class="section-kicker">Hosted access</p>
 				<h2 id="start-title">Try the hosted version in a closed beta group.</h2>
 				<p>Start chatting in Telegram or WhatsApp.<br/>Signup and availability are handled directly in the chat.</p>
 				<div class="start-actions">
-					<a class="button button-primary" href="https://t.me/the_agent_abot" target="_blank" rel="noreferrer" data-track="beta_access_opened" data-source="start-telegram">Try in Telegram <span aria-hidden="true">↗</span></a>
-					<a class="button button-secondary" href="https://wa.me/16185982158" target="_blank" rel="noreferrer" data-track="beta_access_opened" data-source="start-whatsapp">Try in WhatsApp <span aria-hidden="true">↗</span></a>
+					<a class="button button-primary" href="https://t.me/the_agent_abot" target="_blank" rel="noreferrer" data-track="beta_access_opened" data-source="start-telegram" data-analytics-id="start_telegram">Try in Telegram <span aria-hidden="true">↗</span></a>
+					<a class="button button-secondary" href="https://wa.me/16185982158" target="_blank" rel="noreferrer" data-track="beta_access_opened" data-source="start-whatsapp" data-analytics-id="start_whatsapp">Try in WhatsApp <span aria-hidden="true">↗</span></a>
 				</div>
-				<a class="text-link" href="https://github.com/appifyhub/agent-backend#how-to-build-and-run" target="_blank" rel="noreferrer">Prefer your own server? Self-host it <span aria-hidden="true">→</span></a>
+				<a class="text-link" href="https://github.com/appifyhub/agent-backend#how-to-build-and-run" target="_blank" rel="noreferrer" data-analytics-id="start_self_host">Prefer your own server? Self-host it <span aria-hidden="true">→</span></a>
 			</div>
 		</section>
 
-		<section class="faq section" id="faq" aria-labelledby="faq-title">
+		<section class="faq section" id="faq" aria-labelledby="faq-title" data-analytics-section="faq">
 			<div class="container faq-grid">
 				<div class="faq-heading">
 					<p class="section-kicker">Help & FAQ</p>
 					<h2 id="faq-title">Plain answers before you choose.</h2>
 					<p>Need implementation help? Open an issue or read the source documentation.</p>
-					<a class="text-link" href="https://github.com/appifyhub/agent-backend/issues" target="_blank" rel="noreferrer">Report an issue <span aria-hidden="true">↗</span></a>
+					<a class="text-link" href="https://github.com/appifyhub/agent-backend/issues" target="_blank" rel="noreferrer" data-analytics-id="faq_report_issue">Report an issue <span aria-hidden="true">↗</span></a>
 				</div>
 				<div class="faq-list">
 					<details>
@@ -480,53 +481,54 @@
 		</section>
 	</main>
 
-	<footer class="site-footer">
+	<footer class="site-footer" data-analytics-area="footer">
 		<div class="container footer-grid">
 			<div class="footer-brand">
-				<a class="brand-lockup" href="#top">
+				<a class="brand-lockup" href="#top" data-analytics-id="footer_home">
 					<img src="images/icon.png" width="44" height="44" alt="">
 					<span>The Agent</span>
 				</a>
 				<p>Open-source, multi-model AI, on your terms.</p>
-				<p class="parent-brand">An <a href="https://appifyhub.com" target="_blank">AppifyHub</a> project</p>
+				<p class="parent-brand">An <a href="https://appifyhub.com" target="_blank" data-analytics-id="footer_appifyhub">AppifyHub</a> project</p>
 			</div>
 			<div class="footer-links">
 				<div>
 					<h2>Product</h2>
-					<a href="#how-it-works">How it works</a>
-					<a href="#features">Features</a>
-					<a href="#features">Capabilities</a>
+					<a href="#how-it-works" data-analytics-id="footer_how_it_works">How it works</a>
+					<a href="#features" data-analytics-id="footer_features">Features</a>
+					<a href="#features" data-analytics-id="footer_capabilities">Capabilities</a>
 				</div>
 				<div>
 					<h2>Open source</h2>
-					<a href="https://github.com/appifyhub/agent-web" target="_blank" rel="noreferrer">Client</a>
-					<a href="https://github.com/appifyhub/agent-backend" target="_blank" rel="noreferrer">Server</a>
-					<a href="https://github.com/appifyhub/agent-backend#how-to-build-and-run" target="_blank" rel="noreferrer">Self-host guide</a>
-					<a href="https://github.com/appifyhub/agent-backend#developers-overview" target="_blank" rel="noreferrer">Architecture</a>
-					<a href="https://github.com/appifyhub/agent-backend/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">Contributing</a>
-					<a href="https://github.com/appifyhub/agent-backend/blob/main/LICENSE" target="_blank" rel="noreferrer">License</a>
+					<a href="https://github.com/appifyhub/agent-web" target="_blank" rel="noreferrer" data-analytics-id="footer_client">Client</a>
+					<a href="https://github.com/appifyhub/agent-backend" target="_blank" rel="noreferrer" data-analytics-id="footer_server">Server</a>
+					<a href="https://github.com/appifyhub/agent-backend#how-to-build-and-run" target="_blank" rel="noreferrer" data-analytics-id="footer_self_host">Self-host guide</a>
+					<a href="https://github.com/appifyhub/agent-backend#developers-overview" target="_blank" rel="noreferrer" data-analytics-id="footer_architecture">Architecture</a>
+					<a href="https://github.com/appifyhub/agent-backend/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer" data-analytics-id="footer_contributing">Contributing</a>
+					<a href="https://github.com/appifyhub/agent-backend/blob/main/LICENSE" target="_blank" rel="noreferrer" data-analytics-id="footer_license">License</a>
 				</div>
 				<div>
 					<h2>Trust</h2>
-					<a href="https://github.com/appifyhub/agent-backend/blob/main/SECURITY.md" target="_blank" rel="noreferrer">Security</a>
-					<a href="https://www.appifyhub.com/privacy.html" target="_blank" rel="noreferrer">Privacy</a>
-					<a href="https://www.appifyhub.com/terms.html" target="_blank" rel="noreferrer">Terms</a>
+					<a href="https://github.com/appifyhub/agent-backend/blob/main/SECURITY.md" target="_blank" rel="noreferrer" data-analytics-id="footer_security">Security</a>
+					<a href="https://www.appifyhub.com/privacy.html" target="_blank" rel="noreferrer" data-analytics-id="footer_privacy">Privacy</a>
+					<a href="https://www.appifyhub.com/terms.html" target="_blank" rel="noreferrer" data-analytics-id="footer_terms">Terms</a>
 				</div>
 				<div>
 					<h2>Help</h2>
-					<a href="https://t.me/the_agent_abot" target="_blank" rel="noreferrer">Telegram beta</a>
-					<a href="https://wa.me/16185982158" target="_blank" rel="noreferrer">WhatsApp beta</a>
-					<a href="https://github.com/appifyhub/agent-backend/issues" target="_blank" rel="noreferrer">Report an issue</a>
-					<a href="mailto:contact@appifyhub.com">Contact</a>
+					<a href="https://t.me/the_agent_abot" target="_blank" rel="noreferrer" data-analytics-id="footer_telegram">Telegram beta</a>
+					<a href="https://wa.me/16185982158" target="_blank" rel="noreferrer" data-analytics-id="footer_whatsapp">WhatsApp beta</a>
+					<a href="https://github.com/appifyhub/agent-backend/issues" target="_blank" rel="noreferrer" data-analytics-id="footer_report_issue">Report an issue</a>
+					<a href="mailto:contact@appifyhub.com" data-analytics-id="footer_contact">Contact</a>
 				</div>
 			</div>
 		</div>
 		<div class="container footer-bottom">
-			<p>2024–Present © AppifyHub · <a href="https://milos.marinkovic.xyz/2024/09/28/This-AI-Agent-Writes-Its-Own-Story" target="_blank" rel="noreferrer">Origin story</a></p>
-			<a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+			<p>2024–Present © AppifyHub · <a href="https://milos.marinkovic.xyz/2024/09/28/This-AI-Agent-Writes-Its-Own-Story" target="_blank" rel="noreferrer" data-analytics-id="footer_origin_story">Origin story</a></p>
+			<a href="#top" data-analytics-id="footer_back_to_top">Back to top <span aria-hidden="true">↑</span></a>
 		</div>
 	</footer>
 
+	<script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js"></script>
 	<script src="js/main.min.js"></script>
 </body>
 
